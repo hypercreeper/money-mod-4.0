@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "money:blocks/atmtexturesidesbottomtop",
+    "up": "money:blocks/atmtexturesidesbottomtop",
+    "north": "money:blocks/exchangefront",
+    "east": "money:blocks/atmtexturesidesbottomtop",
+    "south": "money:blocks/atmtexturesidesbottomtop",
+    "west": "money:blocks/atmtexturesidesbottomtop",
+    "particle": "money:blocks/atmtexturesidesbottomtop"
+  }
+}

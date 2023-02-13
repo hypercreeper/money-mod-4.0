@@ -1,0 +1,8 @@
+{
+  "parent": "money:custom/payment_machine",
+  "textures": {
+    "all": "money:blocks/texture",
+    "particle": "money:blocks/texture",
+    "0": "money:blocks/texture"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item.money.credit_card": "Credit Card",
+  "block.money.cardupgrader": "Card Upgrader",
+  "block.money.payment_machine": "Payment Machine",
+  "item.money.cash": "Cash",
+  "block.money.card_maker": "Card Maker",
+  "block.money.atm": "ATM",
+  "item.money.coin": "Coin",
+  "item.money.gold_credit_card": "Gold Credit Card",
+  "block.money.exchange_block": "Exchange Block"
+}

@@ -1,0 +1,185 @@
+{
+  "_fv": 33,
+  "_type": "gui",
+  "definition": {
+    "type": 1,
+    "width": 250,
+    "height": 230,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 32,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "label",
+        "data": {
+          "text": "ATM",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "ATM",
+          "x": 202,
+          "y": 16
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Insert Cash/Coins",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Insert Cash/Coins",
+          "x": 102,
+          "y": 44
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Insert Credit Card",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Insert Credit Card",
+          "x": 222,
+          "y": 43
+        }
+      },
+      {
+        "type": "inputslot",
+        "data": {
+          "inputLimit": {
+            "value": ""
+          },
+          "id": 1,
+          "disableStackInteraction": false,
+          "dropItemsWhenNotBound": true,
+          "name": "Slot #1",
+          "x": 261,
+          "y": 59
+        }
+      },
+      {
+        "type": "textfield",
+        "data": {
+          "placeholder": "",
+          "width": 120,
+          "height": 20,
+          "name": "cardpin",
+          "x": 126,
+          "y": 122
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Enter PIN",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Enter PIN",
+          "x": 190,
+          "y": 108
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Enter",
+          "onClick": {
+            "name": "Atmguibutton"
+          },
+          "width": 51,
+          "height": 20,
+          "name": "Enter",
+          "x": 249,
+          "y": 121
+        }
+      },
+      {
+        "type": "checkbox",
+        "data": {
+          "text": "",
+          "name": "withdraw",
+          "x": 148,
+          "y": 85
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Withdraw?: ",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Withdraw?: ",
+          "x": 95,
+          "y": 90
+        }
+      },
+      {
+        "type": "textfield",
+        "data": {
+          "placeholder": "if so, amount?",
+          "width": 120,
+          "height": 20,
+          "name": "amount",
+          "x": 171,
+          "y": 85
+        }
+      },
+      {
+        "type": "outputslot",
+        "data": {
+          "id": 2,
+          "disableStackInteraction": false,
+          "dropItemsWhenNotBound": true,
+          "name": "Slot #2",
+          "x": 297,
+          "y": 86
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Check Credit",
+          "onClick": {
+            "name": "Checkcredit"
+          },
+          "width": 87,
+          "height": 20,
+          "name": "Check Credit",
+          "x": 237,
+          "y": 13
+        }
+      },
+      {
+        "type": "inputslot",
+        "data": {
+          "inputLimit": {
+            "value": ""
+          },
+          "id": 0,
+          "disableStackInteraction": false,
+          "dropItemsWhenNotBound": true,
+          "name": "Slot #0",
+          "x": 136,
+          "y": 58
+        }
+      }
+    ],
+    "gridSettings": {
+      "sx": 18,
+      "sy": 18,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": false
+    }
+  }
+}

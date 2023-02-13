@@ -1,0 +1,100 @@
+{
+  "_fv": 33,
+  "_type": "gui",
+  "definition": {
+    "type": 1,
+    "width": 176,
+    "height": 230,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 30,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "label",
+        "data": {
+          "text": "Payment",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Payment",
+          "x": 193,
+          "y": 9
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Insert Card",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Insert Card",
+          "x": 181,
+          "y": 53
+        }
+      },
+      {
+        "type": "inputslot",
+        "data": {
+          "inputLimit": {
+            "value": ""
+          },
+          "id": 0,
+          "disableStackInteraction": false,
+          "dropItemsWhenNotBound": true,
+          "name": "Slot #0",
+          "x": 202,
+          "y": 67
+        }
+      },
+      {
+        "type": "textfield",
+        "data": {
+          "placeholder": "Enter Pin",
+          "width": 120,
+          "height": 20,
+          "name": "pin",
+          "x": 153,
+          "y": 89
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Price: <BNBT:number:price>",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Price: <BNBT:number:price>",
+          "x": 165,
+          "y": 27
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Pay",
+          "onClick": {
+            "name": "Paymentmachineguiprocesspayment"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "Pay",
+          "x": 190,
+          "y": 124
+        }
+      }
+    ],
+    "gridSettings": {
+      "sx": 18,
+      "sy": 18,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": false
+    }
+  }
+}
