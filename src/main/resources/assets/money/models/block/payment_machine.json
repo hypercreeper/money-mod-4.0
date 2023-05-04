@@ -4,5 +4,6 @@
     "all": "money:blocks/texture",
     "particle": "money:blocks/texture",
     "0": "money:blocks/texture"
-  }
+  },
+  "render_type": "solid"
 }

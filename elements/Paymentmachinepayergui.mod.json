@@ -1,5 +1,5 @@
 {
-  "_fv": 33,
+  "_fv": 39,
   "_type": "gui",
   "definition": {
     "type": 1,
@@ -13,12 +13,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Payment",
+          "name": "label_payment",
+          "text": {
+            "fixedValue": "Payment"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Payment",
           "x": 193,
           "y": 9
         }
@@ -26,12 +28,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Insert Card",
+          "name": "label_insert_card",
+          "text": {
+            "fixedValue": "Insert Card"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Insert Card",
           "x": 181,
           "y": 53
         }
@@ -42,10 +46,14 @@
           "inputLimit": {
             "value": ""
           },
+          "disablePlacement": {
+            "fixedValue": false
+          },
           "id": 0,
-          "disableStackInteraction": false,
+          "disablePickup": {
+            "fixedValue": false
+          },
           "dropItemsWhenNotBound": true,
-          "name": "Slot #0",
           "x": 202,
           "y": 67
         }
@@ -54,9 +62,9 @@
         "type": "textfield",
         "data": {
           "placeholder": "Enter Pin",
+          "name": "pin",
           "width": 120,
           "height": 20,
-          "name": "pin",
           "x": 153,
           "y": 89
         }
@@ -64,12 +72,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Price: <BNBT:number:price>",
+          "name": "label_price_bnbtnumberprice",
+          "text": {
+            "fixedValue": "Price: <BNBT:number:price>"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Price: <BNBT:number:price>",
           "x": 165,
           "y": 27
         }
@@ -77,13 +87,13 @@
       {
         "type": "button",
         "data": {
+          "name": "button_pay",
           "text": "Pay",
           "onClick": {
             "name": "Paymentmachineguiprocesspayment"
           },
           "width": 40,
           "height": 20,
-          "name": "Pay",
           "x": 190,
           "y": 124
         }

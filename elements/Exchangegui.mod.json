@@ -1,5 +1,5 @@
 {
-  "_fv": 33,
+  "_fv": 39,
   "_type": "gui",
   "definition": {
     "type": 1,
@@ -13,12 +13,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Exchange",
+          "name": "label_exchange",
+          "text": {
+            "fixedValue": "Exchange"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Exchange",
           "x": 191,
           "y": 44
         }
@@ -29,10 +31,14 @@
           "inputLimit": {
             "value": ""
           },
+          "disablePlacement": {
+            "fixedValue": false
+          },
           "id": 0,
-          "disableStackInteraction": false,
+          "disablePickup": {
+            "fixedValue": false
+          },
           "dropItemsWhenNotBound": true,
-          "name": "Slot #0",
           "x": 167,
           "y": 77
         }
@@ -40,12 +46,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Emeralds In",
+          "name": "label_emeralds_in",
+          "text": {
+            "fixedValue": "Emeralds In"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Emeralds In",
           "x": 148,
           "y": 64
         }
@@ -53,12 +61,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Cash Out",
+          "name": "label_cash_out",
+          "text": {
+            "fixedValue": "Cash Out"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Cash Out",
           "x": 229,
           "y": 63
         }
@@ -67,9 +77,10 @@
         "type": "outputslot",
         "data": {
           "id": 1,
-          "disableStackInteraction": false,
+          "disablePickup": {
+            "fixedValue": false
+          },
           "dropItemsWhenNotBound": true,
-          "name": "Slot #1",
           "x": 240,
           "y": 77
         }
@@ -77,13 +88,13 @@
       {
         "type": "button",
         "data": {
+          "name": "button_convert",
           "text": "Convert",
           "onClick": {
             "name": "Exchangeguiprocedure"
           },
           "width": 61,
           "height": 20,
-          "name": "Convert",
           "x": 180,
           "y": 98
         }

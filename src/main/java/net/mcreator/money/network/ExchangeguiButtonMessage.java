@@ -70,7 +70,6 @@ public class ExchangeguiButtonMessage {
 
 	@SubscribeEvent
 	public static void registerMessage(FMLCommonSetupEvent event) {
-		MoneyMod.addNetworkMessage(ExchangeguiButtonMessage.class, ExchangeguiButtonMessage::buffer, ExchangeguiButtonMessage::new,
-				ExchangeguiButtonMessage::handler);
+		MoneyMod.addNetworkMessage(ExchangeguiButtonMessage.class, ExchangeguiButtonMessage::buffer, ExchangeguiButtonMessage::new, ExchangeguiButtonMessage::handler);
 	}
 }

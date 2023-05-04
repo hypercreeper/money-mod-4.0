@@ -70,7 +70,6 @@ public class CardmakerguiButtonMessage {
 
 	@SubscribeEvent
 	public static void registerMessage(FMLCommonSetupEvent event) {
-		MoneyMod.addNetworkMessage(CardmakerguiButtonMessage.class, CardmakerguiButtonMessage::buffer, CardmakerguiButtonMessage::new,
-				CardmakerguiButtonMessage::handler);
+		MoneyMod.addNetworkMessage(CardmakerguiButtonMessage.class, CardmakerguiButtonMessage::buffer, CardmakerguiButtonMessage::new, CardmakerguiButtonMessage::handler);
 	}
 }

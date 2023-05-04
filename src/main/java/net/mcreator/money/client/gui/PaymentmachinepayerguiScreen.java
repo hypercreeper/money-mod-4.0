@@ -1,14 +1,10 @@
-
 package net.mcreator.money.client.gui;
 
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.Component;
-import net.minecraft.core.BlockPos;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Button;
@@ -29,6 +25,7 @@ public class PaymentmachinepayerguiScreen extends AbstractContainerScreen<Paymen
 	private final int x, y, z;
 	private final Player entity;
 	EditBox pin;
+	Button button_pay;
 
 	public PaymentmachinepayerguiScreen(PaymentmachinepayerguiMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
@@ -80,16 +77,9 @@ public class PaymentmachinepayerguiScreen extends AbstractContainerScreen<Paymen
 
 	@Override
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-		this.font.draw(poseStack, "Payment", 67, 4, -12829636);
-		this.font.draw(poseStack, "Insert Card", 55, 48, -12829636);
-		this.font.draw(poseStack, "Price: " + (new Object() {
-			public double getValue(BlockPos pos, String tag) {
-				BlockEntity BlockEntity = world.getBlockEntity(pos);
-				if (BlockEntity != null)
-					return BlockEntity.getTileData().getDouble(tag);
-				return 0;
-			}
-		}.getValue(new BlockPos((int) x, (int) y, (int) z), "price")) + "", 39, 22, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.paymentmachinepayergui.label_payment"), 67, 4, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.paymentmachinepayergui.label_insert_card"), 55, 48, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.paymentmachinepayergui.label_price_bnbtnumberprice"), 39, 22, -12829636);
 	}
 
 	@Override
@@ -102,16 +92,16 @@ public class PaymentmachinepayerguiScreen extends AbstractContainerScreen<Paymen
 	public void init() {
 		super.init();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		pin = new EditBox(this.font, this.leftPos + 27, this.topPos + 84, 120, 20, new TextComponent("Enter Pin")) {
+		pin = new EditBox(this.font, this.leftPos + 27, this.topPos + 84, 120, 20, Component.translatable("gui.money.paymentmachinepayergui.pin")) {
 			{
-				setSuggestion("Enter Pin");
+				setSuggestion(Component.translatable("gui.money.paymentmachinepayergui.pin").getString());
 			}
 
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
 				if (getValue().isEmpty())
-					setSuggestion("Enter Pin");
+					setSuggestion(Component.translatable("gui.money.paymentmachinepayergui.pin").getString());
 				else
 					setSuggestion(null);
 			}
@@ -120,19 +110,21 @@ public class PaymentmachinepayerguiScreen extends AbstractContainerScreen<Paymen
 			public void moveCursorTo(int pos) {
 				super.moveCursorTo(pos);
 				if (getValue().isEmpty())
-					setSuggestion("Enter Pin");
+					setSuggestion(Component.translatable("gui.money.paymentmachinepayergui.pin").getString());
 				else
 					setSuggestion(null);
 			}
 		};
-		guistate.put("text:pin", pin);
 		pin.setMaxLength(32767);
+		guistate.put("text:pin", pin);
 		this.addWidget(this.pin);
-		this.addRenderableWidget(new Button(this.leftPos + 64, this.topPos + 119, 40, 20, new TextComponent("Pay"), e -> {
+		button_pay = new Button(this.leftPos + 64, this.topPos + 119, 40, 20, Component.translatable("gui.money.paymentmachinepayergui.button_pay"), e -> {
 			if (true) {
 				MoneyMod.PACKET_HANDLER.sendToServer(new PaymentmachinepayerguiButtonMessage(0, x, y, z));
 				PaymentmachinepayerguiButtonMessage.handleButtonAction(entity, 0, x, y, z);
 			}
-		}));
+		});
+		guistate.put("button:button_pay", button_pay);
+		this.addRenderableWidget(button_pay);
 	}
 }

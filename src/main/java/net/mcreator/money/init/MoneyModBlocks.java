@@ -7,10 +7,6 @@ package net.mcreator.money.init;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.world.level.block.Block;
 
@@ -28,12 +24,4 @@ public class MoneyModBlocks {
 	public static final RegistryObject<Block> EXCHANGE_BLOCK = REGISTRY.register("exchange_block", () -> new ExchangeBlockBlock());
 	public static final RegistryObject<Block> CARDUPGRADER = REGISTRY.register("cardupgrader", () -> new CardupgraderBlock());
 	public static final RegistryObject<Block> PAYMENT_MACHINE = REGISTRY.register("payment_machine", () -> new PaymentMachineBlock());
-
-	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-	public static class ClientSideHandler {
-		@SubscribeEvent
-		public static void clientSetup(FMLClientSetupEvent event) {
-			PaymentMachineBlock.registerRenderLayer();
-		}
-	}
 }

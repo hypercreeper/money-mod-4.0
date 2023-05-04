@@ -70,7 +70,6 @@ public class PaymentmachinepayerguiButtonMessage {
 
 	@SubscribeEvent
 	public static void registerMessage(FMLCommonSetupEvent event) {
-		MoneyMod.addNetworkMessage(PaymentmachinepayerguiButtonMessage.class, PaymentmachinepayerguiButtonMessage::buffer,
-				PaymentmachinepayerguiButtonMessage::new, PaymentmachinepayerguiButtonMessage::handler);
+		MoneyMod.addNetworkMessage(PaymentmachinepayerguiButtonMessage.class, PaymentmachinepayerguiButtonMessage::buffer, PaymentmachinepayerguiButtonMessage::new, PaymentmachinepayerguiButtonMessage::handler);
 	}
 }

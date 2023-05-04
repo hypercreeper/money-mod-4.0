@@ -1,11 +1,9 @@
-
 package net.mcreator.money.client.gui;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.EditBox;
@@ -27,6 +25,7 @@ public class CardmakerguiScreen extends AbstractContainerScreen<CardmakerguiMenu
 	private final int x, y, z;
 	private final Player entity;
 	EditBox initiallpin;
+	Button button_create;
 
 	public CardmakerguiScreen(CardmakerguiMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
@@ -78,8 +77,8 @@ public class CardmakerguiScreen extends AbstractContainerScreen<CardmakerguiMenu
 
 	@Override
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-		this.font.draw(poseStack, "Card Maker", 64, 14, -12829636);
-		this.font.draw(poseStack, "Enter a PIN", 60, 45, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.cardmakergui.label_card_maker"), 64, 14, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.cardmakergui.label_enter_a_pin"), 60, 45, -12829636);
 	}
 
 	@Override
@@ -92,15 +91,17 @@ public class CardmakerguiScreen extends AbstractContainerScreen<CardmakerguiMenu
 	public void init() {
 		super.init();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		initiallpin = new EditBox(this.font, this.leftPos + 30, this.topPos + 61, 120, 20, new TextComponent(""));
-		guistate.put("text:initiallpin", initiallpin);
+		initiallpin = new EditBox(this.font, this.leftPos + 30, this.topPos + 61, 120, 20, Component.translatable("gui.money.cardmakergui.initiallpin"));
 		initiallpin.setMaxLength(32767);
+		guistate.put("text:initiallpin", initiallpin);
 		this.addWidget(this.initiallpin);
-		this.addRenderableWidget(new Button(this.leftPos + 62, this.topPos + 119, 56, 20, new TextComponent("Create"), e -> {
+		button_create = new Button(this.leftPos + 62, this.topPos + 119, 56, 20, Component.translatable("gui.money.cardmakergui.button_create"), e -> {
 			if (true) {
 				MoneyMod.PACKET_HANDLER.sendToServer(new CardmakerguiButtonMessage(0, x, y, z));
 				CardmakerguiButtonMessage.handleButtonAction(entity, 0, x, y, z);
 			}
-		}));
+		});
+		guistate.put("button:button_create", button_create);
+		this.addRenderableWidget(button_create);
 	}
 }

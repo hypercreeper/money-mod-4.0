@@ -1,11 +1,9 @@
-
 package net.mcreator.money.client.gui;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.Button;
@@ -25,6 +23,7 @@ public class ExchangeguiScreen extends AbstractContainerScreen<ExchangeguiMenu> 
 	private final Level world;
 	private final int x, y, z;
 	private final Player entity;
+	Button button_convert;
 
 	public ExchangeguiScreen(ExchangeguiMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
@@ -72,9 +71,9 @@ public class ExchangeguiScreen extends AbstractContainerScreen<ExchangeguiMenu> 
 
 	@Override
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-		this.font.draw(poseStack, "Exchange", 65, 7, -12829636);
-		this.font.draw(poseStack, "Emeralds In", 22, 27, -12829636);
-		this.font.draw(poseStack, "Cash Out", 103, 26, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.exchangegui.label_exchange"), 65, 7, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.exchangegui.label_emeralds_in"), 22, 27, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.exchangegui.label_cash_out"), 103, 26, -12829636);
 	}
 
 	@Override
@@ -87,11 +86,13 @@ public class ExchangeguiScreen extends AbstractContainerScreen<ExchangeguiMenu> 
 	public void init() {
 		super.init();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		this.addRenderableWidget(new Button(this.leftPos + 54, this.topPos + 61, 61, 20, new TextComponent("Convert"), e -> {
+		button_convert = new Button(this.leftPos + 54, this.topPos + 61, 61, 20, Component.translatable("gui.money.exchangegui.button_convert"), e -> {
 			if (true) {
 				MoneyMod.PACKET_HANDLER.sendToServer(new ExchangeguiButtonMessage(0, x, y, z));
 				ExchangeguiButtonMessage.handleButtonAction(entity, 0, x, y, z);
 			}
-		}));
+		});
+		guistate.put("button:button_convert", button_convert);
+		this.addRenderableWidget(button_convert);
 	}
 }

@@ -1,5 +1,5 @@
 {
-  "_fv": 33,
+  "_fv": 39,
   "_type": "gui",
   "definition": {
     "type": 1,
@@ -13,12 +13,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Modify Payment",
+          "name": "label_modify_payment",
+          "text": {
+            "fixedValue": "Modify Payment"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Modify Payment",
           "x": 172,
           "y": 10
         }
@@ -26,12 +28,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Type Price",
+          "name": "label_type_price",
+          "text": {
+            "fixedValue": "Type Price"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Type Price",
           "x": 184,
           "y": 24
         }
@@ -40,9 +44,9 @@
         "type": "textfield",
         "data": {
           "placeholder": "",
+          "name": "price",
           "width": 120,
           "height": 20,
-          "name": "price",
           "x": 151,
           "y": 39
         }
@@ -50,13 +54,13 @@
       {
         "type": "button",
         "data": {
+          "name": "button_start_payment",
           "text": "Start Payment",
           "onClick": {
             "name": "Paymentmachineownerguistartpayment"
           },
           "width": 93,
           "height": 20,
-          "name": "Start Payment",
           "x": 165,
           "y": 64
         }
@@ -64,13 +68,13 @@
       {
         "type": "button",
         "data": {
+          "name": "button_collect_money_if_any",
           "text": "Collect Money (If any)",
           "onClick": {
             "name": "Paymentmachinecollectmoney"
           },
           "width": 139,
           "height": 20,
-          "name": "Collect Money (If any)",
           "x": 142,
           "y": 120
         }
@@ -81,10 +85,14 @@
           "inputLimit": {
             "value": ""
           },
+          "disablePlacement": {
+            "fixedValue": false
+          },
           "id": 0,
-          "disableStackInteraction": false,
+          "disablePickup": {
+            "fixedValue": false
+          },
           "dropItemsWhenNotBound": true,
-          "name": "Slot #0",
           "x": 143,
           "y": 96
         }
@@ -93,9 +101,9 @@
         "type": "textfield",
         "data": {
           "placeholder": "Enter PIN",
+          "name": "pin",
           "width": 120,
           "height": 20,
-          "name": "pin",
           "x": 167,
           "y": 95
         }

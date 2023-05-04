@@ -75,7 +75,6 @@ public class PaymentmachineownerguiButtonMessage {
 
 	@SubscribeEvent
 	public static void registerMessage(FMLCommonSetupEvent event) {
-		MoneyMod.addNetworkMessage(PaymentmachineownerguiButtonMessage.class, PaymentmachineownerguiButtonMessage::buffer,
-				PaymentmachineownerguiButtonMessage::new, PaymentmachineownerguiButtonMessage::handler);
+		MoneyMod.addNetworkMessage(PaymentmachineownerguiButtonMessage.class, PaymentmachineownerguiButtonMessage::buffer, PaymentmachineownerguiButtonMessage::new, PaymentmachineownerguiButtonMessage::handler);
 	}
 }

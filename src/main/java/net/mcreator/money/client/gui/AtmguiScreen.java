@@ -1,11 +1,9 @@
-
 package net.mcreator.money.client.gui;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.EditBox;
@@ -14,6 +12,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.money.world.inventory.AtmguiMenu;
+import net.mcreator.money.procedures.BalanceViewerDisplayOverlayIngameProcedure;
 import net.mcreator.money.network.AtmguiButtonMessage;
 import net.mcreator.money.MoneyMod;
 
@@ -28,8 +27,10 @@ public class AtmguiScreen extends AbstractContainerScreen<AtmguiMenu> {
 	private final int x, y, z;
 	private final Player entity;
 	EditBox cardpin;
-	Checkbox withdraw;
 	EditBox amount;
+	Checkbox withdraw;
+	Button button_enter;
+	Button button_check_credit;
 
 	public AtmguiScreen(AtmguiMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
@@ -85,11 +86,14 @@ public class AtmguiScreen extends AbstractContainerScreen<AtmguiMenu> {
 
 	@Override
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-		this.font.draw(poseStack, "ATM", 113, 11, -12829636);
-		this.font.draw(poseStack, "Insert Cash/Coins", 13, 39, -12829636);
-		this.font.draw(poseStack, "Insert Credit Card", 133, 38, -12829636);
-		this.font.draw(poseStack, "Enter PIN", 101, 103, -12829636);
-		this.font.draw(poseStack, "Withdraw?: ", 6, 85, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.atmgui.label_atm"), 113, 11, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.atmgui.label_insert_cashcoins"), 13, 39, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.atmgui.label_insert_credit_card"), 133, 38, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.atmgui.label_enter_pin"), 101, 103, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.atmgui.label_withdraw"), 6, 85, -12829636);
+		this.font.draw(poseStack,
+
+				BalanceViewerDisplayOverlayIngameProcedure.execute(entity), 11, 14, -12829636);
 	}
 
 	@Override
@@ -102,29 +106,20 @@ public class AtmguiScreen extends AbstractContainerScreen<AtmguiMenu> {
 	public void init() {
 		super.init();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		cardpin = new EditBox(this.font, this.leftPos + 37, this.topPos + 117, 120, 20, new TextComponent(""));
-		guistate.put("text:cardpin", cardpin);
+		cardpin = new EditBox(this.font, this.leftPos + 37, this.topPos + 117, 120, 20, Component.translatable("gui.money.atmgui.cardpin"));
 		cardpin.setMaxLength(32767);
+		guistate.put("text:cardpin", cardpin);
 		this.addWidget(this.cardpin);
-		this.addRenderableWidget(new Button(this.leftPos + 160, this.topPos + 116, 51, 20, new TextComponent("Enter"), e -> {
-			if (true) {
-				MoneyMod.PACKET_HANDLER.sendToServer(new AtmguiButtonMessage(0, x, y, z));
-				AtmguiButtonMessage.handleButtonAction(entity, 0, x, y, z);
-			}
-		}));
-		withdraw = new Checkbox(this.leftPos + 59, this.topPos + 80, 20, 20, new TextComponent(""), false);
-		guistate.put("checkbox:withdraw", withdraw);
-		this.addRenderableWidget(withdraw);
-		amount = new EditBox(this.font, this.leftPos + 82, this.topPos + 80, 120, 20, new TextComponent("if so, amount?")) {
+		amount = new EditBox(this.font, this.leftPos + 82, this.topPos + 80, 120, 20, Component.translatable("gui.money.atmgui.amount")) {
 			{
-				setSuggestion("if so, amount?");
+				setSuggestion(Component.translatable("gui.money.atmgui.amount").getString());
 			}
 
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
 				if (getValue().isEmpty())
-					setSuggestion("if so, amount?");
+					setSuggestion(Component.translatable("gui.money.atmgui.amount").getString());
 				else
 					setSuggestion(null);
 			}
@@ -133,19 +128,32 @@ public class AtmguiScreen extends AbstractContainerScreen<AtmguiMenu> {
 			public void moveCursorTo(int pos) {
 				super.moveCursorTo(pos);
 				if (getValue().isEmpty())
-					setSuggestion("if so, amount?");
+					setSuggestion(Component.translatable("gui.money.atmgui.amount").getString());
 				else
 					setSuggestion(null);
 			}
 		};
-		guistate.put("text:amount", amount);
 		amount.setMaxLength(32767);
+		guistate.put("text:amount", amount);
 		this.addWidget(this.amount);
-		this.addRenderableWidget(new Button(this.leftPos + 148, this.topPos + 8, 87, 20, new TextComponent("Check Credit"), e -> {
+		button_enter = new Button(this.leftPos + 160, this.topPos + 116, 51, 20, Component.translatable("gui.money.atmgui.button_enter"), e -> {
+			if (true) {
+				MoneyMod.PACKET_HANDLER.sendToServer(new AtmguiButtonMessage(0, x, y, z));
+				AtmguiButtonMessage.handleButtonAction(entity, 0, x, y, z);
+			}
+		});
+		guistate.put("button:button_enter", button_enter);
+		this.addRenderableWidget(button_enter);
+		button_check_credit = new Button(this.leftPos + 148, this.topPos + 8, 87, 20, Component.translatable("gui.money.atmgui.button_check_credit"), e -> {
 			if (true) {
 				MoneyMod.PACKET_HANDLER.sendToServer(new AtmguiButtonMessage(1, x, y, z));
 				AtmguiButtonMessage.handleButtonAction(entity, 1, x, y, z);
 			}
-		}));
+		});
+		guistate.put("button:button_check_credit", button_check_credit);
+		this.addRenderableWidget(button_check_credit);
+		withdraw = new Checkbox(this.leftPos + 59, this.topPos + 80, 20, 20, Component.translatable("gui.money.atmgui.withdraw"), false);
+		guistate.put("checkbox:withdraw", withdraw);
+		this.addRenderableWidget(withdraw);
 	}
 }

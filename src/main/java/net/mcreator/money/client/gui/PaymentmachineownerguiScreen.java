@@ -1,11 +1,9 @@
-
 package net.mcreator.money.client.gui;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.EditBox;
@@ -28,6 +26,8 @@ public class PaymentmachineownerguiScreen extends AbstractContainerScreen<Paymen
 	private final Player entity;
 	EditBox price;
 	EditBox pin;
+	Button button_start_payment;
+	Button button_collect_money_if_any;
 
 	public PaymentmachineownerguiScreen(PaymentmachineownerguiMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
@@ -83,8 +83,8 @@ public class PaymentmachineownerguiScreen extends AbstractContainerScreen<Paymen
 
 	@Override
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-		this.font.draw(poseStack, "Modify Payment", 46, 5, -12829636);
-		this.font.draw(poseStack, "Type Price", 58, 19, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.paymentmachineownergui.label_modify_payment"), 46, 5, -12829636);
+		this.font.draw(poseStack, Component.translatable("gui.money.paymentmachineownergui.label_type_price"), 58, 19, -12829636);
 	}
 
 	@Override
@@ -97,32 +97,20 @@ public class PaymentmachineownerguiScreen extends AbstractContainerScreen<Paymen
 	public void init() {
 		super.init();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		price = new EditBox(this.font, this.leftPos + 25, this.topPos + 34, 120, 20, new TextComponent(""));
-		guistate.put("text:price", price);
+		price = new EditBox(this.font, this.leftPos + 25, this.topPos + 34, 120, 20, Component.translatable("gui.money.paymentmachineownergui.price"));
 		price.setMaxLength(32767);
+		guistate.put("text:price", price);
 		this.addWidget(this.price);
-		this.addRenderableWidget(new Button(this.leftPos + 39, this.topPos + 59, 93, 20, new TextComponent("Start Payment"), e -> {
-			if (true) {
-				MoneyMod.PACKET_HANDLER.sendToServer(new PaymentmachineownerguiButtonMessage(0, x, y, z));
-				PaymentmachineownerguiButtonMessage.handleButtonAction(entity, 0, x, y, z);
-			}
-		}));
-		this.addRenderableWidget(new Button(this.leftPos + 16, this.topPos + 115, 139, 20, new TextComponent("Collect Money (If any)"), e -> {
-			if (true) {
-				MoneyMod.PACKET_HANDLER.sendToServer(new PaymentmachineownerguiButtonMessage(1, x, y, z));
-				PaymentmachineownerguiButtonMessage.handleButtonAction(entity, 1, x, y, z);
-			}
-		}));
-		pin = new EditBox(this.font, this.leftPos + 41, this.topPos + 90, 120, 20, new TextComponent("Enter PIN")) {
+		pin = new EditBox(this.font, this.leftPos + 41, this.topPos + 90, 120, 20, Component.translatable("gui.money.paymentmachineownergui.pin")) {
 			{
-				setSuggestion("Enter PIN");
+				setSuggestion(Component.translatable("gui.money.paymentmachineownergui.pin").getString());
 			}
 
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
 				if (getValue().isEmpty())
-					setSuggestion("Enter PIN");
+					setSuggestion(Component.translatable("gui.money.paymentmachineownergui.pin").getString());
 				else
 					setSuggestion(null);
 			}
@@ -131,13 +119,29 @@ public class PaymentmachineownerguiScreen extends AbstractContainerScreen<Paymen
 			public void moveCursorTo(int pos) {
 				super.moveCursorTo(pos);
 				if (getValue().isEmpty())
-					setSuggestion("Enter PIN");
+					setSuggestion(Component.translatable("gui.money.paymentmachineownergui.pin").getString());
 				else
 					setSuggestion(null);
 			}
 		};
-		guistate.put("text:pin", pin);
 		pin.setMaxLength(32767);
+		guistate.put("text:pin", pin);
 		this.addWidget(this.pin);
+		button_start_payment = new Button(this.leftPos + 39, this.topPos + 59, 93, 20, Component.translatable("gui.money.paymentmachineownergui.button_start_payment"), e -> {
+			if (true) {
+				MoneyMod.PACKET_HANDLER.sendToServer(new PaymentmachineownerguiButtonMessage(0, x, y, z));
+				PaymentmachineownerguiButtonMessage.handleButtonAction(entity, 0, x, y, z);
+			}
+		});
+		guistate.put("button:button_start_payment", button_start_payment);
+		this.addRenderableWidget(button_start_payment);
+		button_collect_money_if_any = new Button(this.leftPos + 16, this.topPos + 115, 139, 20, Component.translatable("gui.money.paymentmachineownergui.button_collect_money_if_any"), e -> {
+			if (true) {
+				MoneyMod.PACKET_HANDLER.sendToServer(new PaymentmachineownerguiButtonMessage(1, x, y, z));
+				PaymentmachineownerguiButtonMessage.handleButtonAction(entity, 1, x, y, z);
+			}
+		});
+		guistate.put("button:button_collect_money_if_any", button_collect_money_if_any);
+		this.addRenderableWidget(button_collect_money_if_any);
 	}
 }

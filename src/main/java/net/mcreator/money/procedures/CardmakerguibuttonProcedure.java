@@ -22,12 +22,7 @@ public class CardmakerguibuttonProcedure {
 			((Slot) _slots.get(0)).set(_setstack);
 			_player.containerMenu.broadcastChanges();
 		}
-		(entity instanceof ServerPlayer _plrSlotItem && _plrSlotItem.containerMenu instanceof Supplier _splr && _splr.get() instanceof Map _slt
-				? ((Slot) _slt.get(0)).getItem()
-				: ItemStack.EMPTY).getOrCreateTag()
-				.putString("PIN", (guistate.containsKey("text:initiallpin") ? ((EditBox) guistate.get("text:initiallpin")).getValue() : ""));
-		(entity instanceof ServerPlayer _plrSlotItem && _plrSlotItem.containerMenu instanceof Supplier _splr && _splr.get() instanceof Map _slt
-				? ((Slot) _slt.get(0)).getItem()
-				: ItemStack.EMPTY).getOrCreateTag().putDouble("credit", 0);
+		entity.getPersistentData().putString("PIN", (guistate.containsKey("text:initiallpin") ? ((EditBox) guistate.get("text:initiallpin")).getValue() : ""));
+		entity.getPersistentData().putDouble("credit", 0);
 	}
 }

@@ -1,6 +1,6 @@
 
 /*
- *    MCreator note: This file will be REGENERATED on each build.
+ *	MCreator note: This file will be REGENERATED on each build.
  */
 package net.mcreator.money.init;
 
@@ -23,12 +23,12 @@ public class MoneyModScreens {
 	@SubscribeEvent
 	public static void clientLoad(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
-			MenuScreens.register(MoneyModMenus.CARDMAKERGUI, CardmakerguiScreen::new);
-			MenuScreens.register(MoneyModMenus.ATMGUI, AtmguiScreen::new);
-			MenuScreens.register(MoneyModMenus.EXCHANGEGUI, ExchangeguiScreen::new);
-			MenuScreens.register(MoneyModMenus.CARDUPGRADERGUI, CardupgraderguiScreen::new);
-			MenuScreens.register(MoneyModMenus.PAYMENTMACHINEOWNERGUI, PaymentmachineownerguiScreen::new);
-			MenuScreens.register(MoneyModMenus.PAYMENTMACHINEPAYERGUI, PaymentmachinepayerguiScreen::new);
+			MenuScreens.register(MoneyModMenus.CARDMAKERGUI.get(), CardmakerguiScreen::new);
+			MenuScreens.register(MoneyModMenus.ATMGUI.get(), AtmguiScreen::new);
+			MenuScreens.register(MoneyModMenus.EXCHANGEGUI.get(), ExchangeguiScreen::new);
+			MenuScreens.register(MoneyModMenus.CARDUPGRADERGUI.get(), CardupgraderguiScreen::new);
+			MenuScreens.register(MoneyModMenus.PAYMENTMACHINEOWNERGUI.get(), PaymentmachineownerguiScreen::new);
+			MenuScreens.register(MoneyModMenus.PAYMENTMACHINEPAYERGUI.get(), PaymentmachinepayerguiScreen::new);
 		});
 	}
 }

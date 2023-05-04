@@ -8,5 +8,6 @@
     "south": "money:blocks/atmtexturesidesbottomtop",
     "west": "money:blocks/atmtexturesidesbottomtop",
     "particle": "money:blocks/atmtexturesidesbottomtop"
-  }
+  },
+  "render_type": "solid"
 }

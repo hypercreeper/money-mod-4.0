@@ -1,5 +1,5 @@
 {
-  "_fv": 33,
+  "_fv": 39,
   "_type": "gui",
   "definition": {
     "type": 1,
@@ -13,12 +13,14 @@
       {
         "type": "label",
         "data": {
-          "text": "ATM",
+          "name": "label_atm",
+          "text": {
+            "fixedValue": "ATM"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "ATM",
           "x": 202,
           "y": 16
         }
@@ -26,12 +28,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Insert Cash/Coins",
+          "name": "label_insert_cashcoins",
+          "text": {
+            "fixedValue": "Insert Cash/Coins"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Insert Cash/Coins",
           "x": 102,
           "y": 44
         }
@@ -39,12 +43,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Insert Credit Card",
+          "name": "label_insert_credit_card",
+          "text": {
+            "fixedValue": "Insert Credit Card"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Insert Credit Card",
           "x": 222,
           "y": 43
         }
@@ -55,10 +61,14 @@
           "inputLimit": {
             "value": ""
           },
+          "disablePlacement": {
+            "fixedValue": false
+          },
           "id": 1,
-          "disableStackInteraction": false,
+          "disablePickup": {
+            "fixedValue": false
+          },
           "dropItemsWhenNotBound": true,
-          "name": "Slot #1",
           "x": 261,
           "y": 59
         }
@@ -67,9 +77,9 @@
         "type": "textfield",
         "data": {
           "placeholder": "",
+          "name": "cardpin",
           "width": 120,
           "height": 20,
-          "name": "cardpin",
           "x": 126,
           "y": 122
         }
@@ -77,12 +87,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Enter PIN",
+          "name": "label_enter_pin",
+          "text": {
+            "fixedValue": "Enter PIN"
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Enter PIN",
           "x": 190,
           "y": 108
         }
@@ -90,13 +102,13 @@
       {
         "type": "button",
         "data": {
+          "name": "button_enter",
           "text": "Enter",
           "onClick": {
             "name": "Atmguibutton"
           },
           "width": 51,
           "height": 20,
-          "name": "Enter",
           "x": 249,
           "y": 121
         }
@@ -104,8 +116,8 @@
       {
         "type": "checkbox",
         "data": {
-          "text": "",
           "name": "withdraw",
+          "text": "",
           "x": 148,
           "y": 85
         }
@@ -113,12 +125,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Withdraw?: ",
+          "name": "label_withdraw",
+          "text": {
+            "fixedValue": "Withdraw?: "
+          },
           "color": {
             "value": -12829636,
             "falpha": 0.0
           },
-          "name": "Withdraw?: ",
           "x": 95,
           "y": 90
         }
@@ -127,9 +141,9 @@
         "type": "textfield",
         "data": {
           "placeholder": "if so, amount?",
+          "name": "amount",
           "width": 120,
           "height": 20,
-          "name": "amount",
           "x": 171,
           "y": 85
         }
@@ -138,9 +152,10 @@
         "type": "outputslot",
         "data": {
           "id": 2,
-          "disableStackInteraction": false,
+          "disablePickup": {
+            "fixedValue": false
+          },
           "dropItemsWhenNotBound": true,
-          "name": "Slot #2",
           "x": 297,
           "y": 86
         }
@@ -148,13 +163,13 @@
       {
         "type": "button",
         "data": {
+          "name": "button_check_credit",
           "text": "Check Credit",
           "onClick": {
             "name": "Checkcredit"
           },
           "width": 87,
           "height": 20,
-          "name": "Check Credit",
           "x": 237,
           "y": 13
         }
@@ -165,12 +180,32 @@
           "inputLimit": {
             "value": ""
           },
+          "disablePlacement": {
+            "fixedValue": false
+          },
           "id": 0,
-          "disableStackInteraction": false,
+          "disablePickup": {
+            "fixedValue": false
+          },
           "dropItemsWhenNotBound": true,
-          "name": "Slot #0",
           "x": 136,
           "y": 58
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_empty",
+          "text": {
+            "fixedValue": "",
+            "name": "BalanceViewerDisplayOverlayIngame"
+          },
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "x": 100,
+          "y": 19
         }
       }
     ],
